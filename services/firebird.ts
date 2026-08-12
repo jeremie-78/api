@@ -16,7 +16,7 @@ export default class FirebirdService {
 			db.query("SELECT * FROM TEST", [], function (err, result) {
 				if (err) throw err;
 				console.log(result);
-			})
-		})
+			});
+		});
 	}
 }
