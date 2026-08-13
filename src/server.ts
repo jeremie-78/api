@@ -1,4 +1,3 @@
-#!/usr/bin/env tsx
 import "reflect-metadata";
 import { createServer, type Server } from "node:http";
 import { container } from "tsyringe";
