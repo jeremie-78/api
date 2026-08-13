@@ -1,14 +1,13 @@
 import "reflect-metadata";
 import { createServer, type Server } from "node:http";
-import { container } from "tsyringe";
 import dotenv from "dotenv";
-import AppContainer from "./express";
 import { type Express } from "express";
+import AppContainer from "./express";
 
 
 dotenv.config();
 
-const app: Express = container.resolve(AppContainer).app;
+const app: Express = new AppContainer().app;
 
 /**
  * Get port from environment and store in Express.

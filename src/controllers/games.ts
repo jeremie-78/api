@@ -1,6 +1,6 @@
 import { type RequestHandler } from "express";
-import FirebirdService from "../services/firebird";
 import { injectable } from "tsyringe";
+import FirebirdService from "../services/firebird";
 
 
 @injectable()

@@ -2,7 +2,6 @@ import createError, { type HttpError } from "http-errors";
 import express, { type Express, type Request, type Response, type NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-import { injectable } from "tsyringe";
 import indexRouter from "./routes/index";
 import usersRouter from "./routes/users";
 
@@ -24,7 +23,6 @@ const controllerMap = {
 	"/users": usersRouter
 }
 
-@injectable()
 export default class AppContainer {
 
 	app: Express;
