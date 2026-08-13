@@ -1,9 +1,10 @@
 {
 	"compilerOptions": {
 		"target": "esnext",
-		"module": "esnext",
+		"module": "commonjs",
 		"moduleResolution": "bundler",
-		"noEmit": true,
+		"rootDir": "./src",
+		"outDir": "./dist",
 		"strict": true,
 		"skipLibCheck": true,
 		"experimentalDecorators": true,
@@ -13,5 +14,7 @@
 		]
 		// "esModuleInterop": true,
 		// "allowSyntheticDefaultImports": true
-	}
+	},
+	"include": ["src/**/*.ts"],
+    "exclude": ["node_modules", "dist"]
 }
