@@ -3,7 +3,7 @@
 	"private": true,
 	"main": "src/server.ts",
 	"scripts": {
-		"start": "tsc && concurrently \"tsc --watch\" \"node --watch dist/server.js\""
+		"start": "tsc && concurrently \"tsc --watch\" \"node --watch --inspect dist/server.js\""
 	},
 	"devEngines": {
 		"packageManager": {
