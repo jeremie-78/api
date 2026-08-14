@@ -1,6 +1,6 @@
 import { type RequestHandler } from "express";
 import { injectable } from "tsyringe";
-import FirebirdService from "../services/firebird";
+import FirebirdService from "../services/firebird.service";
 
 
 @injectable()
@@ -8,7 +8,7 @@ export default class GamesController {
 
 	constructor (private firebirdService: FirebirdService) {}
 
-	test: RequestHandler = async (req, res) => {
-		res.send(await this.firebirdService.test());
+	all: RequestHandler = async (req, res) => {
+		res.send(await this.firebirdService.allGames());
 	};
 }

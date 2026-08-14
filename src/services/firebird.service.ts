@@ -12,7 +12,7 @@ export default class FirebirdService {
 		this.pool = Firebird.pool(5, { database: "db_1" });
 	}
 
-	test () {
+	allGames () {
 		return this.pool.withConnection(db => db.queryAsync("SELECT * FROM GAMES", []));
 	}
 }

@@ -2,8 +2,9 @@ import createError, { type HttpError } from "http-errors";
 import express, { type Express, type Request, type Response, type NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-import indexRouter from "./routes/index";
-import usersRouter from "./routes/users";
+import indexRouter from "./routes/index.route";
+import usersRouter from "./routes/users.route";
+import gamesRouter from "./routes/games.route";
 
 
 const notFound = function (req: Request, res: Response, next: NextFunction): void {next(createError(404))}
@@ -20,7 +21,8 @@ const errorHandler = function (err: HttpError, req: Request, res: Response, next
 
 const controllerMap = {
 	"/": indexRouter,
-	"/users": usersRouter
+	"/users": usersRouter,
+	"/games": gamesRouter
 }
 
 export default class AppContainer {
