@@ -2,14 +2,16 @@ import createError, { type HttpError } from "http-errors";
 import express, { type Express, type Request, type Response, type NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-import indexRouter from "./routes/index.route";
-import usersRouter from "./routes/users.route";
-import gamesRouter from "./routes/games.route";
+import indexRouter from "./routes/index";
+import usersRouter from "./routes/users";
+import gamesRouter from "./routes/games";
 
 
-const notFound = function (req: Request, res: Response, next: NextFunction): void {next(createError(404))}
+const notFound = function (req: Request, res: Response, next: NextFunction): void {
+	next(createError(404));
+}
 
-const errorHandler = function (err: HttpError, req: Request, res: Response, next: NextFunction): void {
+const errorHandler = function (err: HttpError, req: Request, res: Response): void {
 	// set locals, only providing error in development
 	res.locals.message = err.message;
 	res.locals.error = req.app.get("env") === "development" ? err : {};
