@@ -8,4 +8,6 @@ const gamesController = container.resolve(GamesController);
 
 router.get("/", gamesController.all);
 
+router.post("/", gamesController.add);
+
 export default router;

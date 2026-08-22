@@ -11,4 +11,8 @@ export default class GamesController {
 	all: RequestHandler = async (req, res) => {
 		res.send(await this.firebirdService.allGames());
 	};
+
+	add: RequestHandler = async (req, res) => {
+		res.send(await this.firebirdService.addGame(req.body));
+	};
 }
