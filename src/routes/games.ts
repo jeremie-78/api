@@ -6,7 +6,7 @@ import GamesController from "../controllers/games";
 const router: Router = express.Router();
 const gamesController = container.resolve(GamesController);
 
-router.get("/", gamesController.all);
+router.get("/", gamesController.search);
 
 router.post("/", gamesController.add);
 

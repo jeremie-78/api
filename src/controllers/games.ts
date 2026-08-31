@@ -8,8 +8,8 @@ export default class GamesController {
 
 	constructor (private firebirdService: FirebirdService) {}
 
-	all: RequestHandler = async (req, res) => {
-		res.send(await this.firebirdService.allGames());
+	search: RequestHandler = async (req, res) => {
+		res.send(await this.firebirdService.searchGames(req.query));
 	};
 
 	add: RequestHandler = async (req, res) => {
