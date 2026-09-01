@@ -16,7 +16,7 @@ export default class FirebirdService {
 	searchGames (game: GameTemplate) {
 		const clauses = Object.entries(game).map(([key, value]): [string, string] => {switch (key) {
 			case "TITLE":
-				return ["TITLE LIKE", `%${value.trim().toLowerCase().split(" ").join("%")}%`];
+				return ["TITLE LIKE", `%${value.trim().toLowerCase().split(" ").join("_%")}%`];
 			case "CONSOLE":
 				return ["CONSOLE =", value.toUpperCase()];
 			case "REGION":
