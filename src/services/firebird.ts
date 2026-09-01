@@ -26,7 +26,7 @@ export default class FirebirdService {
 			case "EDITION":
 				return ["EDITION =", value];
 			case "COMPLETE":
-				return ["COMPLETE =", String(value)];
+				return ["COMPLETE =", value];
 			case "CASE_TYPE":
 				return ["CASE_TYPE =", value];
 			default:
