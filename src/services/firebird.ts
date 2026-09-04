@@ -40,11 +40,9 @@ export default class FirebirdService {
 	}
 
 	addGames (games: MinimalGame[]) {
-		return this.pool.withConnection(db => db.queryAsync(
-			`INSERT INTO GAMES (${Object.keys(games[0]).join(", ")}) VALUES ${Array(games.length).fill(
-				`(${Array(Object.keys(games[0]).length).fill("?").join(", ")})`
-			)}`,
-			[games.map(game => Object.values(game)).flat()]
+		return this.pool.withConnection(db => db.executeBatchAsync(
+			`INSERT INTO GAMES (${Object.keys(games[0]).join(", ")}) VALUES (${Array(Object.entries(games[0]).length).fill("?").join(", ")})`,
+			games.map(game => Object.values(game))
 		));
 	}
 }

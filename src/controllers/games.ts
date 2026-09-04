@@ -14,7 +14,7 @@ export default class GamesController {
 	};
 
 	add: RequestHandler = async (req, res) => {
-		const rows = String(req.body).split("\n").map(line => line.split(","));
+		const rows = String(req.body).split(/\r?\n/).map(line => line.split(","));
 		const headers = rows[0];
 		const [titleIndex, consoleIndex] = [headers.indexOf(gameColumns.TITLE), headers.indexOf(gameColumns.CONSOLE)];
 

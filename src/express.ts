@@ -36,7 +36,8 @@ export default class AppContainer {
 
 		this.app.use(logger("dev"));
 		this.app.use(express.json());
-		this.app.use(express.urlencoded({ extended: false }));
+		this.app.use(express.text({ type: "text/*" }));
+		this.app.use(express.urlencoded());
 		this.app.use(cookieParser());
 
 		for (const [path, router] of Object.entries(controllerMap)) {
