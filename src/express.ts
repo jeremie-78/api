@@ -29,7 +29,7 @@ const controllerMap = {
 
 export default class AppContainer {
 
-	app: Express;
+	readonly app: Express;
 
 	constructor () {
 		this.app = express();
