@@ -1,11 +1,8 @@
 import * as Firebird from "node-firebird";
 import { type ConnectionPool } from "node-firebird";
 import { singleton } from "tsyringe";
-import dotenv from "dotenv";
 import { type GameTemplate, type MinimalGame } from "../interfaces/game";
 
-
-dotenv.config();
 
 @singleton()
 export default class FirebirdService {
