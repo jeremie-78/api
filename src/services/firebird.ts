@@ -1,8 +1,11 @@
 import * as Firebird from "node-firebird";
 import { type ConnectionPool } from "node-firebird";
 import { singleton } from "tsyringe";
+import dotenv from "dotenv";
 import { type GameTemplate, type MinimalGame } from "../interfaces/game";
 
+
+dotenv.config();
 
 @singleton()
 export default class FirebirdService {
@@ -10,7 +13,7 @@ export default class FirebirdService {
 	readonly pool: ConnectionPool;
 
 	constructor () {
-		this.pool = Firebird.pool(5, { database: "db_1" });
+		this.pool = Firebird.pool(5, { database: process.env.DB });
 	}
 
 	searchGames (game: GameTemplate) {
