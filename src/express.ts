@@ -3,7 +3,6 @@ import express, { type Express, type Request, type Response, type NextFunction }
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import indexRouter from "./routes/index";
-import usersRouter from "./routes/users";
 import gamesRouter from "./routes/games";
 
 
@@ -23,7 +22,6 @@ const errorHandler = function (err: HttpError, req: Request, res: Response): voi
 
 const controllerMap = {
 	"/": indexRouter,
-	"/users": usersRouter,
 	"/games": gamesRouter
 }
 
