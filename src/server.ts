@@ -1,7 +1,5 @@
 import "reflect-metadata";
 import { createServer, type Server } from "node:http";
-import dotenv from "dotenv";
-dotenv.config();
 import { type Express } from "express";
 import AppContainer from "./express";
 
