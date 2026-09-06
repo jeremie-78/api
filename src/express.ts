@@ -20,7 +20,7 @@ const errorHandler = function (err: HttpError, req: Request, res: Response): voi
 	res.send([res.locals.message, ":", res.locals.error.stack].join(" "));
 }
 
-const controllerMap = {
+const routerMap = {
 	"/": indexRouter,
 	"/games": gamesRouter
 }
@@ -38,7 +38,7 @@ export default class AppContainer {
 		this.app.use(express.urlencoded());
 		this.app.use(cookieParser());
 
-		for (const [path, router] of Object.entries(controllerMap)) {
+		for (const [path, router] of Object.entries(routerMap)) {
 			this.app.use(path, router);
 		}
 
