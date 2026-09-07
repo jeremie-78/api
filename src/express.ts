@@ -8,7 +8,7 @@ import gamesRouter from "./routes/games";
 
 const notFound = function (req: Request, res: Response, next: NextFunction): void {
 	next(createError(404));
-}
+};
 
 const errorHandler = function (err: HttpError, req: Request, res: Response): void {
 	// set locals, only providing error in development
@@ -18,20 +18,18 @@ const errorHandler = function (err: HttpError, req: Request, res: Response): voi
 	// render the error page
 	res.status(err.status || 500);
 	res.send([res.locals.message, ":", res.locals.error.stack].join(" "));
-}
+};
 
 const routerMap = {
 	"/": indexRouter,
 	"/games": gamesRouter
-}
+};
 
 export default class AppContainer {
 
-	readonly app: Express;
+	readonly app: Express = express();
 
 	constructor () {
-		this.app = express();
-
 		this.app.use(logger("dev"));
 		this.app.use(express.json());
 		this.app.use(express.text({ type: "text/*" }));

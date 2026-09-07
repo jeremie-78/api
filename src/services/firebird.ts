@@ -7,11 +7,7 @@ import { type GameTemplate, type MinimalGame } from "../interfaces/game";
 @singleton()
 export default class FirebirdService {
 
-	readonly pool: ConnectionPool;
-
-	constructor () {
-		this.pool = Firebird.pool(5, { database: process.env.DB });
-	}
+	readonly pool: ConnectionPool = Firebird.pool(5, { database: process.env.DB });
 
 	searchGames (game: GameTemplate) {
 		const clauses = Object.entries(game).map(([key, value]): [string, string] => {switch (key) {

@@ -7,7 +7,7 @@ export enum gameColumns {
 	COMPLETE = "COMPLETE",
 	CASE_TYPE = "CASE_TYPE",
 	MISC = "MISC"
-};
+}
 
 export interface GameTemplate {
 	TITLE?: string;
