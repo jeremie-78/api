@@ -14,7 +14,9 @@ export default class GamesController {
 	};
 
 	add: RequestHandler = async (req, res) => {
-		const rows = String(req.body).split(/\r?\n/).map(line => line.split(","));
+		const rows = String(req.body).split(/\r?\n/).map(line =>
+			line.split(/(?<=^[^"]*(?:"[^"]*"[^"]*)*),/) // splits on commas that are not inside quotes (= preceded by an even number of quotes)
+		);
 		const headers = rows[0];
 		const [titleIndex, consoleIndex] = [headers.indexOf(gameColumns.TITLE), headers.indexOf(gameColumns.CONSOLE)];
 
@@ -23,12 +25,17 @@ export default class GamesController {
 		if (!headers.every(header => Object.values(gameColumns).includes(header as gameColumns)))
 			res.status(400).send("invalid headers");
 
-		const games = rows.slice(1)
+		const games: MinimalGame[] = rows.slice(1)
+		.map(row => row.map(value =>
+			value === "" ? undefined : JSON.parse(value)
+		))
 		.filter(row => row.length === headers.length)
-		.filter(row => row[titleIndex] !== "" && row[consoleIndex] !== "")
-		.map(row => row.reduce((acc, value, index) =>
-			({ ...acc, [headers[index]]: value }), {}) as MinimalGame
-		);
+		.filter(row => row[titleIndex]?.length && row[consoleIndex]?.length)
+		.map(row => row.reduce((acc, value, index) => (
+			{ ...acc, [headers[index]]: value === "" ? undefined : value }
+		), {}) as MinimalGame);
+
+		if (games.length < rows.length - 1) res.status(400).send("one or more invalid rows");
 
 		res.send(await this.firebirdService.addGames(games));
 	};
