@@ -8,16 +8,16 @@
 	"devEngines": {
 		"packageManager": {
 			"name": "pnpm",
-			"version": "^11.18.0",
+			"version": "^12.5.1",
 			"onFail": "download"
 		}
 	},
 	"dependencies": {
-		"cookie-parser": "~1.4.4",
+		"cookie-parser": "~1.4.7",
 		"express": "^5.2.1",
 		"http-errors": "^2.0.1",
-		"morgan": "^1.11.0",
-		"node-firebird": "^2.14.3",
+		"morgan": "^1.12.1",
+		"node-firebird": "^2.16.2",
 		"reflect-metadata": "^0.2.2",
 		"tsyringe": "^4.10.0"
 	},
@@ -26,8 +26,8 @@
 		"@types/express": "^5.0.6",
 		"@types/http-errors": "^2.0.5",
 		"@types/morgan": "^1.9.10",
-		"@types/node": "^26.1.2",
-		"concurrently": "^10.0.4",
+		"@types/node": "^26.6.2",
+		"concurrently": "^10.0.5",
 		"typescript": "^7.0.2"
 	}
 }

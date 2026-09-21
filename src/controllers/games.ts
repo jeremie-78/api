@@ -32,11 +32,15 @@ export default class GamesController {
 		.filter(row => row.length === headers.length)
 		.filter(row => row[titleIndex]?.length && row[consoleIndex]?.length)
 		.map(row => row.reduce((acc, value, index) => (
-			{ ...acc, [headers[index]]: value === "" ? undefined : value }
+			value !== "" ? { ...acc, [headers[index]]: value } : acc
 		), {}) as MinimalGame);
 
 		if (games.length < rows.length - 1) res.status(400).send("one or more invalid rows");
 
 		res.send(await this.firebirdService.addGames(games));
 	};
+
+	del: RequestHandler = async (req, res) => {
+		res.send(await this.firebirdService.deleteGame(req.body));
+	}
 }

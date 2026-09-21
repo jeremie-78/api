@@ -11,4 +11,6 @@ router.get("/", gamesController.search);
 
 router.post("/", typeFilter("text/csv"), gamesController.add);
 
+router.delete("/", gamesController.del);
+
 export default router;

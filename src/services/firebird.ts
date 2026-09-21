@@ -1,13 +1,13 @@
 import * as Firebird from "node-firebird";
 import { type ConnectionPool } from "node-firebird";
 import { singleton } from "tsyringe";
-import { type GameTemplate, type MinimalGame } from "../interfaces/game";
+import { Game, type GameTemplate, type MinimalGame } from "../interfaces/game";
 
 
 @singleton()
 export default class FirebirdService {
 
-	readonly pool: ConnectionPool = Firebird.pool(5, { database: process.env.DB });
+	readonly pool: ConnectionPool = Firebird.pool(5, {});
 
 	searchGames (game: GameTemplate) {
 		const clauses = Object.entries(game).map(([key, value]): [string, string] => {switch (key) {
@@ -40,5 +40,18 @@ export default class FirebirdService {
 			`INSERT INTO GAMES (${Object.keys(games[0]).join(", ")}) VALUES (${Array(Object.entries(games[0]).length).fill("?").join(", ")})`,
 			games.map(game => Object.values(game))
 		));
+	}
+
+	deleteGame (game: Game) {
+		const filteredData = Object.entries(game)
+		.filter(([key, value]) => value !== null)
+		.reduce((obj, [key, value]) =>
+			Object.assign(obj, { [key]: value }),
+		{});
+
+		return this.pool.withConnection(db => db.queryAsync(
+			`DELETE FROM GAMES WHERE ${Object.keys(filteredData).map(key => key + "=?").join(" AND ")}`,
+			[...Object.values(filteredData)]
+		))
 	}
 }

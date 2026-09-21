@@ -1,0 +1,15 @@
+{
+	"configurations": [
+		{
+			"type": "node",
+			"request": "attach",
+			"name": "api debug",
+			"restart": true,
+			"sourceMaps": true,
+			"localRoot": "${workspaceFolder}/api",
+			"skipFiles": [
+				"<node_internals>/**"
+			]
+		}
+	]
+}
